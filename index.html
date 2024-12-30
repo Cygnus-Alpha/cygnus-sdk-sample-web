@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chatbot SDK Integration</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <link href="./chatbot-sdk.css" type="text/css" rel="stylesheet"/>
+    <script src="./chatbotSDK.umd.js"></script>
+   
+  </head>
+
+  <body>
+    <div id="sdk-container"></div>
+    <button id="login-button">Login</button>
+    <script>
+      // Initialize the Chatbot SDK
+      window.ChatbotSDK.initialize('sdk-container', {
+        //TODO: Add apiKey and apiEndpoint
+      });
+
+      // Function to set a user
+      function setUser() {
+        // Retrieve the token from localStorage
+        const token = localStorage.getItem('api_auth_token') || "api_auth_token";
+        
+        window.ChatbotSDK.setUser({
+          id: '123',
+          name: 'John Doe',
+          email: 'john.doe@example.com',
+          token: token, // Use the retrieved token
+        });
+
+        window.ChatbotSDK.setDynamicPayload({
+          pay: 'more',
+          api_auth_token: token,
+          mobile: "9009009009",
+          user_metadata: { user_id: '123', user_access_token: 'token' },
+          api_auth_token: token,
+        });
+
+        console.log('User set successfully with token:', token);
+      }
+
+      // Add event listener to the login button
+      document.getElementById('login-button').addEventListener('click', setUser);
+
+      // Check if a user is logged in
+      const isLoggedIn = window.ChatbotSDK.isUserLoggedIn();
+      console.log('Is user logged in:', isLoggedIn);
+
+      // Set a callback before sending a message
+      window.ChatbotSDK.beforeSendMessage(() => {
+        console.log('Preparing to send a message...');
+      });
+
+      // Set a callback after sending a message
+      window.ChatbotSDK.afterSendMessage(() => {
+        console.log('Message sent successfully.');
+      });
+
+      // Set a callback for when a message is received
+      window.ChatbotSDK.onMessageReceived((message) => {
+        console.log('Received message:', message);
+      });
+
+    </script>
+
+    
+  </body>
+</html>
