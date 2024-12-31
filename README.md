@@ -14,8 +14,8 @@ The Cygnus Chatbot SDK is a powerful tool for integrating a chatbot into your we
 Include the SDK in your HTML file:
 
 ```html
-<script src="./chatbotSDK.umd.js"></script>
-<link rel="stylesheet" href="./chatbot-sdk.css">
+<script src="./ca-assistant.umd.js"></script>
+<link rel="stylesheet" href="./ca-assistant.css">
 ```
 
 ## Usage
@@ -184,9 +184,7 @@ Here's a complete example of how to use the SDK in an HTML file:
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chatbot SDK Integration</title>
-    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    <script src="./chatbotSDK.umd.js"></script>
+    <script src="./ca-assistant.umd.js"></script>
 </head>
 <body>
     <div id="sdk-container"></div>
