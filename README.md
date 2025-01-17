@@ -15,7 +15,7 @@ Include the SDK in your HTML file:
 
 ```html
 <script src="./ca-assistant.umd.js"></script>
-<link rel="stylesheet" href="./ca-assistant.css">
+<link rel="stylesheet" href="./ca-assistant.css" />
 ```
 
 ## Usage
@@ -29,13 +29,22 @@ To initialize the chatbot, call the `initialize` method with the ID of the conta
   window.ChatbotSDK.initialize('sdk-container', {
     apiKey: 'your-api-key',
     apiEndpoint: 'your-api-endpoint',
-    boxSize: { width: '400px', height: '500px' },
+    boxSize: { width: '600px', height: '500px' },
+    responseCard: {
+      columns: '2',
+      titleFont: '18px',
+      contentFont: '14px',
+    },
     position: 'top-left',
     logo: 'path/to/your/logo.png',
-    themeName: 'green',
+    botIcon: 'path/to/your/logo.png',
+    chatIcon: 'path/to/your/logo.png',
+    chatFontSize: '16px',
+    chatFontFamily: 'Gill Sans',
+    themeName: 'dark',
     customPayload: {
       page: 'dashboard',
-    }
+    },
   });
 </script>
 ```
@@ -52,11 +61,17 @@ When initializing the chatbot, you must provide the following required settings:
 
 Optional settings include:
 
-- `botName` (string, optional): The name of the bot.
+- `responseCard` (object): The configuration for the response card inside the chatbot, where messages or responses are displayed.
+  - `columns` (string): Defines the number of columns the response card, e.g., `'2'`.
+  - `titleFont` (string): Specifies the font size for the title inside the response card, e.g., `'18px'`. It can be specified in various units such as px, em, rem, etc.
+  - `contentFont` (string): Defines the font size for the content (the main body text) inside the response card, e.g., `'14px'`. It can be specified in various units such as px, em, rem, etc.
 - `themeColor` (string, optional): The primary color theme of the chatbot, e.g., `#ff5733`.
-- `fontFamily` (string, optional): The font family to be used in the chatbot, e.g., `'Arial, sans-serif'`.
+- `chatFontFamily` (string, optional): The font family to be used in the chatbot, e.g., `'Gill Sans'`.
+- `chatFontSize` (string, optional): The font family to be used in the chatbot, e.g., `'14px'`. It can be specified in various units such as px, em, rem, etc.
 - `position` (string, optional): The position of the chatbot on the screen, Possible values are `'bottom-right', 'bottom-left', 'top-right', 'top-left'`.
 - `logo` (string, optional): URL to the logo image to be displayed in the chatbot.
+- `botIcon` (string, optional): The icon that represents the chatbot itself. This icon is typically displayed as a button that, when clicked, opens the chatbot interface. It's usually shown in a fixed position on the screen, often at the bottom right, to trigger the opening of the chat window.
+- `chatIcon` (string, optional): The icon that appears in the chat window when a response is received.
 - `themeName` (ThemeName, optional): The name of the theme to be applied. Possible values are `"light"`, `"dark"`, `"blue"`, `"red"`.
 - `enableLogger` (boolean, optional): Enable or disable logging, default is `false`.
 - `customPayload` (object, optional): Additional data to be sent with each message.
@@ -67,15 +82,22 @@ Example:
 window.ChatbotSDK.initialize({
   apiKey: 'your-api-key',
   apiEndpoint: 'https://api.yourchatbot.com',
-  botName: 'CygnusBot',
   themeColor: '#ff5733',
-  fontFamily: 'Arial, sans-serif',
-  boxSize: { width: '400px', height: '600px' },
+  boxSize: { width: '600px', height: '600px' },
+  responseCard: {
+    columns: '2',
+    titleFont: '18px',
+    contentFont: '14px',
+  },
   position: 'bottom-right',
   logo: 'https://example.com/logo.png',
+  botIcon: 'path/to/your/logo.png',
+  chatIcon: 'path/to/your/logo.png',
+  chatFontSize: '16px',
+  chatFontFamily: 'Gill Sans',
   themeName: 'dark',
   enableLogger: true,
-  customPayload: { userId: '12345' }
+  customPayload: { userId: '12345' },
 });
 ```
 
@@ -98,7 +120,7 @@ Set dynamic payload
 
 ```javascript
 window.ChatbotSDK.dynamicPayload({
-    api_auth_token: 'api_auth_token',
+  api_auth_token: 'api_auth_token',
 });
 ```
 
@@ -180,46 +202,44 @@ Here's a complete example of how to use the SDK in an HTML file:
 ```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chatbot SDK Integration</title>
     <script src="./ca-assistant.umd.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <div id="sdk-container"></div>
     <script>
-        window.ChatbotSDK.initialize('sdk-container');
-        window.ChatbotSDK.setUser({
-            id: '123',
-            name: 'John Doe',
-            email: 'john.doe@example.com',
-            token: 'user-token',
-        });
-        const isLoggedIn = window.ChatbotSDK.isUserLoggedIn();
-        console.log('Is user logged in:', isLoggedIn);
-        window.ChatbotSDK.beforeSendMessage(() => {
-            console.log('Preparing to send a message...');
-        });
-        window.ChatbotSDK.afterSendMessage(() => {
-            console.log('Message sent successfully.');
-        });
-        window.ChatbotSDK.onMessageReceived((message) => {
-            console.log('Received message:', message);
-        });
-        window.ChatbotSDK.sendMessage(
-            'Hello, chatbot!',
-            (loading) => console.log('Loading:', loading),
-            (isActive) => console.log('Chat active:', isActive),
-            (messages) => console.log('Messages:', messages)
-        );
+      window.ChatbotSDK.initialize('sdk-container');
+      window.ChatbotSDK.setUser({
+        id: '123',
+        name: 'John Doe',
+        email: 'john.doe@example.com',
+        token: 'user-token',
+      });
+      const isLoggedIn = window.ChatbotSDK.isUserLoggedIn();
+      console.log('Is user logged in:', isLoggedIn);
+      window.ChatbotSDK.beforeSendMessage(() => {
+        console.log('Preparing to send a message...');
+      });
+      window.ChatbotSDK.afterSendMessage(() => {
+        console.log('Message sent successfully.');
+      });
+      window.ChatbotSDK.onMessageReceived((message) => {
+        console.log('Received message:', message);
+      });
+      window.ChatbotSDK.sendMessage(
+        'Hello, chatbot!',
+        (loading) => console.log('Loading:', loading),
+        (isActive) => console.log('Chat active:', isActive),
+        (messages) => console.log('Messages:', messages)
+      );
     </script>
-</body>
+  </body>
 </html>
 ```
 
 ## License
 
 This project is licensed under the MIT License.
-
-
