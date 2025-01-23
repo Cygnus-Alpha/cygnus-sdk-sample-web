@@ -29,9 +29,7 @@ To initialize the chatbot, call the `initialize` method with the ID of the conta
   window.ChatbotSDK.initialize('sdk-container', {
     apiKey: 'your-api-key',
     apiEndpoint: 'your-api-endpoint',
-    boxSize: { width: '600px', height: '500px' },
     responseCard: {
-      columns: '2',
       titleFont: '18px',
       contentFont: '14px',
     },
@@ -55,14 +53,10 @@ When initializing the chatbot, you must provide the following required settings:
 
 - `apiKey` (string, **required**): Your API key for authentication.
 - `apiEndpoint` (string, **required**): The endpoint URL for the chatbot API.
-- `boxSize` (object, **required**): The dimensions of the chatbot box.
-  - `width` (string): Width of the chatbot box, e.g., `'400px'`.
-  - `height` (string): Height of the chatbot box, e.g., `'600px'`.
 
 Optional settings include:
 
 - `responseCard` (object): The configuration for the response card inside the chatbot, where messages or responses are displayed.
-  - `columns` (string): Defines the number of columns the response card, e.g., `'2'`.
   - `titleFont` (string): Specifies the font size for the title inside the response card, e.g., `'18px'`. It can be specified in various units such as px, em, rem, etc.
   - `contentFont` (string): Defines the font size for the content (the main body text) inside the response card, e.g., `'14px'`. It can be specified in various units such as px, em, rem, etc.
 - `themeColor` (string, optional): The primary color theme of the chatbot, e.g., `#ff5733`.
@@ -83,9 +77,7 @@ window.ChatbotSDK.initialize({
   apiKey: 'your-api-key',
   apiEndpoint: 'https://api.yourchatbot.com',
   themeColor: '#ff5733',
-  boxSize: { width: '600px', height: '600px' },
   responseCard: {
-    columns: '2',
     titleFont: '18px',
     contentFont: '14px',
   },
