@@ -40,6 +40,25 @@ To initialize the chatbot, call the `initialize` method with the ID of the conta
     chatFontSize: '16px',
     chatFontFamily: 'Gill Sans',
     themeName: 'dark',
+    showWaitingMessages: true,
+    waitingMessages: {
+      initial: {
+        time: 1,
+        message:
+          'Hold on! We are just adding the secret sauce to your experience.',
+      },
+      mid: {
+        time: 5,
+        message:
+          'Taking a little longer, just adding the right flavor. Good things make you wait.',
+      },
+      late: {
+        time: 10,
+        message:
+          'Yikes!! Seems our servers have also gone for a coffee break. Want to give it another go?',
+      },
+    },
+    initialInfoText: 'Hello user how are you?',
     customPayload: {
       page: 'dashboard',
     },
@@ -67,6 +86,8 @@ Optional settings include:
 - `botIcon` (string, optional): The icon that represents the chatbot itself. This icon is typically displayed as a button that, when clicked, opens the chatbot interface. It's usually shown in a fixed position on the screen, often at the bottom right, to trigger the opening of the chat window.
 - `chatIcon` (string, optional): The icon that appears in the chat window when a response is received.
 - `themeName` (ThemeName, optional): The name of the theme to be applied. Possible values are `"light"`, `"dark"`, `"blue"`, `"red"`.
+- `showWaitingMessages` (boolean, optional): Show or hide the waiting messages, default is `false`.
+- `waitingMessages` (object, optional): Custom messages to be displayed while the chatbot is processing the message. `waitingMessages` is an object with three properties: `initial`, `mid`, and `late`. Each property is an object with two properties: `time` and `message`. The `time` property is the number of seconds to wait before displaying the message. The `message` property is the message to be displayed.
 - `enableLogger` (boolean, optional): Enable or disable logging, default is `false`.
 - `customPayload` (object, optional): Additional data to be sent with each message.
 
@@ -88,6 +109,25 @@ window.ChatbotSDK.initialize({
   chatFontSize: '16px',
   chatFontFamily: 'Gill Sans',
   themeName: 'dark',
+  showWaitingMessages: true,
+  waitingMessages: {
+    initial: {
+      time: 1,
+      message:
+        'Hold on! We are just adding the secret sauce to your experience.',
+    },
+    mid: {
+      time: 5,
+      message:
+        'Taking a little longer, just adding the right flavor. Good things make you wait.',
+    },
+    late: {
+      time: 10,
+      message:
+        'Yikes!! Seems our servers have also gone for a coffee break. Want to give it another go?',
+    },
+  },
+  initialInfoText: 'Hello user how are you?',
   enableLogger: true,
   customPayload: { userId: '12345' },
 });
