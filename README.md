@@ -59,6 +59,10 @@ To initialize the chatbot, call the `initialize` method with the ID of the conta
       },
     },
     initialInfoText: 'Hello user how are you?',
+    initialPrompts: ['Test A', 'Test B', 'Test C', 'Test D'],
+    initialCameraPrompts: ['Test A', 'Test B'],
+    showLoaderOnly: true,
+    customBanner: <div>HTML code</div>,
     customPayload: {
       page: 'dashboard',
     },
@@ -88,6 +92,11 @@ Optional settings include:
 - `themeName` (ThemeName, optional): The name of the theme to be applied. Possible values are `"light"`, `"dark"`, `"blue"`, `"red"`.
 - `showWaitingMessages` (boolean, optional): Show or hide the waiting messages, default is `false`.
 - `waitingMessages` (object, optional): Custom messages to be displayed while the chatbot is processing the message. `waitingMessages` is an object with three properties: `initial`, `mid`, and `late`. Each property is an object with two properties: `time` and `message`. The `time` property is the number of seconds to wait before displaying the message. The `message` property is the message to be displayed.
+- `initialInfoText` A custom message that will be displayed when the chatbot is first initialized, such as a greeting.
+- `initialPrompts` Predefined response options for the user. These are likely shown as buttons or suggestions within the chat.
+- `initialCameraPrompts` This can be a specific set of prompts related to the camera or capturing images, possibly shown to the user if the bot needs to interact with the camera.
+- `showLoaderOnly` A setting to control whether only a loader (like a loading spinner or indicator) is shown to the user while waiting for a response.
+- `customBanner` Custom HTML code for a banner that might be displayed within the chatbot interface, offering flexibility to include more advanced layouts or content like images, links, or special styling.
 - `enableLogger` (boolean, optional): Enable or disable logging, default is `false`.
 - `customPayload` (object, optional): Additional data to be sent with each message.
 
@@ -128,7 +137,10 @@ window.ChatbotSDK.initialize({
     },
   },
   initialInfoText: 'Hello user how are you?',
-  enableLogger: true,
+  initialPrompts: ['Test A', 'Test B', 'Test C', 'Test D'],
+  initialCameraPrompts: ['Test A', 'Test B'],
+  showLoaderOnly: true,
+  customBanner: <div>HTML code</div>,
   customPayload: { userId: '12345' },
 });
 ```
