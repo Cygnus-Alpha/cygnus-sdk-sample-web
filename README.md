@@ -118,6 +118,7 @@ window.ChatbotSDK.initialize({
   chatFontSize: '16px',
   chatFontFamily: 'Gill Sans',
   themeName: 'dark',
+  botName: '',
   showWaitingMessages: true,
   waitingMessages: {
     initial: {
@@ -140,6 +141,11 @@ window.ChatbotSDK.initialize({
   initialPrompts: ['Test A', 'Test B', 'Test C', 'Test D'],
   initialCameraPrompts: ['Test A', 'Test B'],
   showLoaderOnly: true,
+  headerInfoText: 'text';
+  botIconText: 'text';
+  cameraIcon: '/img/link';
+  attachmentsIcon: 'img/link';
+  autoSendPrompts: true;
   customBanner: <div>HTML code</div>,
   customPayload: { userId: '12345' },
 });
