@@ -62,10 +62,18 @@ To initialize the chatbot, call the `initialize` method with the ID of the conta
     initialPrompts: ['Test A', 'Test B', 'Test C', 'Test D'],
     initialCameraPrompts: ['Test A', 'Test B'],
     showLoaderOnly: true,
-    customBanner: <div>HTML code</div>,
+    customBanner: `<div>HTML code</div>`,
     customPayload: {
       page: 'dashboard',
     },
+    customPrompt: [
+      {
+        label: 'Hello user',
+        value: 'Hello user How are you?',
+        action: 'copy' | 'submit',
+        showCameraIcon: false,
+      },
+    ],
   });
 </script>
 ```
@@ -99,6 +107,13 @@ Optional settings include:
 - `customBanner` Custom HTML code for a banner that might be displayed within the chatbot interface, offering flexibility to include more advanced layouts or content like images, links, or special styling.
 - `enableLogger` (boolean, optional): Enable or disable logging, default is `false`.
 - `customPayload` (object, optional): Additional data to be sent with each message.
+- `customPrompt` (Aray of object, optional): this is an array of objects, meaning you can have multiple objects within the array, each representing a different prompt with its own settings.
+  Label: This refers to how the prompt will be displayed to the user.
+  Value: This is the text message that will be sent when the prompt is selected.
+  Action: There are two options here:
+  Copy: The message will be copied to the input field.
+  Submit: The message will be sent directly.
+  showCameraIcon: If set to true, the camera icon will be shown; if set to false, the camera icon will not be shown.
 
 Example:
 
@@ -146,8 +161,16 @@ window.ChatbotSDK.initialize({
   cameraIcon: '/img/link';
   attachmentsIcon: 'img/link';
   autoSendPrompts: true;
-  customBanner: <div>HTML code</div>,
+  customBanner: `<div>HTML code</div>`,
   customPayload: { userId: '12345' },
+  customPrompt: [
+      {
+        label: 'Hello user',
+        value: 'Hello user How are you?',
+        action: 'copy' | 'submit',
+        showCameraIcon: false,
+      },
+    ],
 });
 ```
 
