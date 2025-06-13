@@ -75,6 +75,26 @@ To initialize the chatbot, call the `initialize` method with the ID of the conta
         showCameraIcon: false,
       },
     ],
+    enableImageAnalysisFeature: true,
+    userDetailsForm: {
+      promptForUserDetails: true,
+      fields: {
+        name: {
+          enabled: true,
+          required: true,
+          label: 'Name',
+          placeholder: 'e.g., Shubham Gupta',
+        },
+        email: {
+          enabled: true,
+          required: true,
+          label: 'Email',
+          placeholder: 'e.g., shubham@gmail.com',
+        },
+      },
+      title: 'We just need some more information from you to proceed.',
+      submitButtonText: 'Send',
+    },
   });
 </script>
 ```
@@ -109,6 +129,16 @@ Optional settings include:
 - `customBanner` Custom HTML code for a banner that might be displayed within the chatbot interface, offering flexibility to include more advanced layouts or content like images, links, or special styling.
 - `enableLogger` (boolean, optional): Enable or disable logging, default is `false`.
 - `customPayload` (object, optional): Additional data to be sent with each message.
+- `enableImageAnalysisFeature` (boolean, optional): Enable image upload functionality in the chat. Default is `false`.
+- `userDetailsForm` (object, optional): Show a form to collect user details before chat starts.
+  - `promptForUserDetails` (boolean): Whether to prompt for user details.
+  - `fields` (object): Fields to request from the user. Each field (e.g., `name`, `email`) can have:
+    - `enabled` (boolean): Show this field in the form.
+    - `required` (boolean): Make this field mandatory.
+    - `label` (string): Label for the field.
+    - `placeholder` (string): Placeholder text for the field.
+  - `title` (string): Title or message shown above the form.
+  - `submitButtonText` (string): Text for the submit button.
 - `customPrompt` (Aray of object, optional): this is an array of objects, meaning you can have multiple objects within the array, each representing a different prompt with its own settings.
   Label: This refers to how the prompt will be displayed to the user.
   Value: This is the text message that will be sent when the prompt is selected.
@@ -167,13 +197,33 @@ window.ChatbotSDK.initialize({
   customBanner: `<div>HTML code</div>`,
   customPayload: { userId: '12345' },
   customPrompt: [
-      {
-        label: 'Hello user',
-        value: 'Hello user How are you?',
-        action: 'copy' | 'submit',
-        showCameraIcon: false,
+    {
+      label: 'Hello user',
+      value: 'Hello user How are you?',
+      action: 'copy' | 'submit',
+      showCameraIcon: false,
+    },
+  ],
+  enableImageAnalysisFeature: true,
+  userDetailsForm: {
+    promptForUserDetails: true,
+    fields: {
+      name: {
+        enabled: true,
+        required: true,
+        label: 'Name',
+        placeholder: 'e.g., Shubham Gupta',
       },
-    ],
+      email: {
+        enabled: true,
+        required: true,
+        label: 'Email',
+        placeholder: 'e.g., shubham@gmail.com',
+      },
+    },
+    title: 'We just need some more information from you to proceed.',
+    submitButtonText: 'Send',
+  },
 });
 ```
 
